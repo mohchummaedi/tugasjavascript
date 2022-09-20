@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chummaedi Amrullah</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-3">
+  <h2><center>BMKG<center></h2>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Daerah</th>
+        <th>Skala</th>
+        <th>Dampak</th>
+        <th>Status Warga</th>
+      </tr>
+    </thead>
+    <tbody id="tampil">
+    </tbody>
+  </table>
+</div>
+
+<script>
+    let tampil = document.getElementById('tampil');
+    no = 1;
+    class Gempa{
+        constructor(lokasi, skala){
+            this.lokasi = lokasi;
+            this.skala = skala;
+        }
+        getMengungsi(){
+            this.ket = this.skala >= 5 ? 'Mengungsi' : 'Tidak Mengungsi';
+            return this.ket;
+        }
+
+        getDampak(){
+            if (this.skala <= 2) this.dampak = 'Tidak Terasa';
+            else if (this.skala <=4) this.dampak = 'Bangunan Retak - retak';
+            else if (this.skala <= 6) this.dampak = 'Bangunan Roboh';
+            else this.dampak = 'Terancam Tsunami';
+    
+            
+            return this.dampak;
+        }
+        infogempa(){
+            tampil.innerHTML +=`
+            <tr>
+                <td>${no++}</td>
+                <td>${this.lokasi}</td>
+                <td>${this.skala}</td>
+                <td>${this.getDampak()}</td>
+                <td>${this.getMengungsi()}</td>
+            </tr>`;
+        }
+    }
+        const gempa1 = new Gempa('Bandung',5);
+        gempa1.infogempa();
+        const gempa2 = new Gempa('Jayapura',2);
+        gempa2.infogempa();
+        const gempa3 = new Gempa('Pontianak',4);
+        gempa3.infogempa();
+        const gempa4 = new Gempa('Tangerang',7);
+        gempa4.infogempa();
+        const gempa5 = new Gempa('Cirebon',6);
+        gempa5.infogempa();
+        const gempa6 = new Gempa('Semarang',3);
+        gempa6.infogempa();
+        const gempa7 = new Gempa('Aceh',7);
+        gempa7.infogempa();
+        const gempa8 = new Gempa('Medan',2);
+        gempa8.infogempa();
+        const gempa9 = new Gempa('Samarinda',9);
+        gempa9.infogempa();
+        const gempa10 = new Gempa('Balikpapan',8);
+        gempa10.infogempa();
+</script>
+</body>
+</html>
